@@ -39,14 +39,11 @@ public class Lottery {
         return Weighted(weights);
     }
 
-    public static <TSubject> TSubject Weighted(LotteryPair<TSubject, Double> $pairs) {
-        switch ($pairs.Size()) {
-            case 0:
-                return null;
-            case 1:
-                return $pairs.Subject(0);
-            default:
-                return $pairs.Subject(_Weighted($pairs.Weight()));
-        }
+    public static <TSubject> TSubject Weighted(LotteryPair<TSubject> $pairs) {
+        return switch ($pairs.Size()) {
+            case 0 -> null;
+            case 1 -> $pairs.Subject(0);
+            default -> $pairs.Subject(_Weighted($pairs.Weight()));
+        };
     }
 }

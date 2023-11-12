@@ -1,10 +1,10 @@
 ﻿package trrne;
 
-public class Pair<TSubject, TWeight> {
-    public TSubject subject;
-    public TWeight weight;
+public class Pair<T> {
+    public T subject;
+    public Double weight;
 
-    public Pair(TSubject $a, TWeight $b) {
+    public Pair(T $a, Double $b) {
         subject = $a;
         weight = $b;
     }

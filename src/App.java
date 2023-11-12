@@ -2,17 +2,17 @@ import trrne.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // Vector2 a = new Vector2(2, 4);
-        // Vector2 b = new Vector2(8, 16);
+        Vector2 a = new Vector2(2, 4);
+        Vector2 b = new Vector2(8, 16);
 
-        // System.out.println("a: " + a.Magnitude() + ", " + a.Normalize());
-        // System.out.println("b: " + b.Magnitude() + ", " + b.Normalize());
+        System.out.println("a: " + a.Magnitude() + ", " + a.Normalize());
+        System.out.println("b: " + b.Magnitude() + ", " + b.Normalize());
 
-        // System.out.println(Vector2.Distance(a, b));
-        // System.out.println(Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y,
-        // 2)));
+        System.out.println(Vector2.Distance(a, b));
+        System.out.println(Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y,
+                2)));
 
-        // System.out.println(Vector2.Angle(a, b));
+        System.out.println(Vector2.Angle(a, b));
 
         // class Data {
         // public String name;
@@ -36,8 +36,11 @@ public class App {
         // System.out.println("encrypted: " + encrypted);
         // System.out.println("decrypted: " + decrypted);
 
-        LotteryPair<String, Double> pair = new LotteryPair<>(
-                new Pair("kara", 1), new Pair("oko", 0.5), new Pair("kuri", 0.2), new Pair("goma", 0.1));
-        System.out.println(Lottery.Weighted(pair));
+        // LotteryPair<String> pair = new LotteryPair<String>(
+        // new Pair<String>("kara", 1.0),
+        // new Pair<String>("oko", 0.5),
+        // new Pair<String>("kuri", 0.2),
+        // new Pair<String>("goma", 0.1));
+        // System.out.println(Lottery.Weighted(pair));
     }
 }
