@@ -1,49 +1,50 @@
-﻿package trrne;
+package trrne;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
-public class Lottery {
-    public static int Weighted(double... $weights) {
-        if ($weights.length <= 0) {
-            return -1;
+public class Lottery<TSubject> {
+    public static int bst(List<Double> $weights) throws Exception {
+        if ($weights.size() <= 0) {
+            throw new Exception();
         }
 
-        double[] totals = new double[$weights.length];
-        double total = 0;
-        for (int i = 0; i < $weights.length; i++) {
-            total += $weights[i];
-            totals[i] = total;
+        List<Double> totals = new ArrayList<>($weights.size());
+        double total = 0.0;
+        for (int i = 0; i < $weights.size(); i++) {
+            total += $weights.get(i);
+            totals.add(total);
         }
 
-        double random = new Random().doubles(0, total).findFirst().getAsDouble();
-        int min = 0, max = totals.length - 1;
-        while (min < max) {
-            int center = (min + max) / 2;
-            if (random > totals[center]) {
-                min = center + 1;
+        double rnd = new Random().doubles(0.0, total).findFirst().getAsDouble();
+        int bottom = 0, top = totals.size() - 1;
+        while (bottom < top) {
+            int middle = (bottom + top) / 2;
+            if (rnd > totals.get(middle)) {
+                bottom = middle + 1;
             } else {
-                if (random >= (center > 0 ? totals[center - 1] : 0)) {
-                    return center;
+                if (rnd >= (middle > 0 ? totals.get(middle - 1) : 0)) {
+                    return middle;
                 }
-                max = center;
+                top = middle;
             }
         }
-        return max;
+        return top;
     }
 
-    static int _Weighted(Double[] tSubjects) {
-        double[] weights = new double[tSubjects.length];
-        for (int i = 0; i < weights.length; i++) {
-            weights[i] = tSubjects[i];
+    public static int bst(Double[] $weights) throws Exception {
+        return bst(Arrays.asList($weights));
+    }
+
+    public static <TSubject> TSubject weighted(LotteryPair<TSubject> $pair) throws Exception {
+        if ($pair.size() <= 0) {
+            throw new Exception();
         }
-        return Weighted(weights);
-    }
-
-    public static <TSubject> TSubject Weighted(LotteryPair<TSubject> $pairs) {
-        return switch ($pairs.Size()) {
-            case 0 -> null;
-            case 1 -> $pairs.Subject(0);
-            default -> $pairs.Subject(_Weighted($pairs.Weight()));
+        return switch ($pair.size()) {
+            case 1 -> $pair.items.get(0);
+            default -> $pair.items.get(bst($pair.weights));
         };
     }
 }
